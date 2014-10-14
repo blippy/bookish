@@ -1,0 +1,96 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{amsmath}
+\usepackage{hhline}
+
+\title{Clean Surplus Accounting}
+\author{Mark Carter}
+\date{May 2012}
+
+\begin{document}
+\maketitle
+
+% preferred paragraph layout
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.1in}
+
+\section{Overview}
+
+This article summarises the book \emph{Buffett and Beyond}, by
+Dr. J.B. Farwell, published in 2004. The basic premise of the book is this: tradional P\&L statements include non-recurring items. This makes it difficult to compare profits year-on-year, a ROE (Return On Equity), and distorts the asset base. ``Clean Surplus Accounting'' makes adjustments to all these items so that a more meaningful analysis can be done.
+
+
+\section{Mechanics of the method}
+
+Let us see how a traditional (hereinafter referred to as ``raw'') set of accounts might look:
+
+\begin{tabular}{lr}
+{\bf P\&L Account:} & \\
+Net Income before non-recurring items & 100 \\
+Non-recurring items & 10 \\ \hhline{~-}
+Earnings & 90 \\ 
+Dividends & 20 \\ \cline{2-2}
+Retained earnings & 70 \\ \hhline{~=}
+%\hline
+{\bf Balance Sheet:} & \\
+Book value B/d & 1000 \\
+Retained earnings & 70 \\ \hhline{~-}
+Book value c/d & 1070 \\ \hhline{~=}
+{\bf Return On Equity:} & \\
+Basic basis (90/1000) & 9.0\% \\
+Adjusted basis (100/1000) & 10.0\% \\
+\end{tabular}
+
+Notice that you could calculate ROE on 2 bases: one using basic earnings (i.e. unadjusted) earnings, and another using adjusted earnings. Using basic earnings to compute ROE would be somewhat naive, and an analyst should make some kind of adjustment. The analyst might use adjusted earnings, which strips out non-recurring items.
+
+Here is how the set of accounts would look under clean surplus accounting:
+
+\begin{tabular}{lr}
+{\bf P\&L Account:} & \\
+Clean earnings & 100 \\
+Dividends & 20 \\ \cline{2-2}
+Retained earnings & 80 \\ \hhline{~=}
+%\hline
+{\bf Balance Sheet:} & \\
+Book value B/d & 1000 \\
+Retained earnings & 80 \\ \hhline{~-}
+Book value c/d & 1080 \\ \hhline{~=}
+{\bf Return On Equity:} & \\
+Clean basis (100/1000) & 10.0\% \\
+\end{tabular}
+
+All we have done is exclude non-recurring items from the P\&L Account, and adjusted the book (equity) value accordingly. So far, the analyst would be able to compute identical ROEs. However, this is solely because the book values brought down are identical. {\bf In general, they wont be}. Consider what would happen next year if the company made \$100 earnings (with no non-recurring items) next year. Under raw accounting methods, the ROE would be calculated as 9.34\% (100/1070). Under clean surplus accounting, the ROE would be 9.26\% (100/1080). {\bf Thus the presence of a high number of non-recurring items over many years tends to systematically understate book values and consequently overstate ROEs}.
+
+Just as future ``clean'' book values carried forward will be different from the ``raw'' book values carried forward, it follows that we must make adjustments to the book value brought forward. We had ignored this issue in the example above, and assumed that the brought forward values were the same in both cases. Theoretically, we would have to go back to the company's formation in order to derive a book value brought forward. In practise, this is of course unfeasible. We would have to compromise, typically by going back a decade, using the book value as given, and then working forward using cleaned-up retained earnings.
+
+There is one last wrinkle: book values need to be adjusted for the issue or distribution of capital. Dividends have been accounted for automatically in the examples above, but there may be some sporadic capital raising or retirement that would require the revision of clean book value. Dividends reduce the book value, so of course capital fund-raising increases the book value. To summarise:
+\begin{equation}
+\text{CBV}_1 = \text{CBV}_0 + \text{Clean Earnings} -\text{Dividends} + \text{Other net capital activities}
+\end{equation}
+Here, $CBV_1$ represents the clean book value carried down, $CBV_0$ is the clean book brought forward, and the other items have their obvious meanings. Usually, we would expect the ``other capital activities'' to be 0.
+
+\section{Worked Example}
+
+In this section we see computations for Clean Surplus Accounting applied to a specific company: SN. (Smith and Nephew), a company that makes artificial joints, medical instruments, and bandages. Here they are:
+
+\begin{tabular}{rrrrrr}
+Year & CBV    & EPS   & Div   & RE    & CROE\% \\
+2003 & 55.85  & 18.38 & 4.95  & 13.43 &  32.9 \\
+2004 & 69.28  & 22.30 & 5.10  & 17.20 &  32.2 \\
+2005 & 86.48  & 25.41 & 5.60  & 19.81 &  29.4 \\
+2006 & 106.29 & 22.84 & 5.49  & 17.35 &  21.5 \\
+2007 & 123.64 & 26.43 & 6.07  & 20.36 &  21.4 \\
+2008 & 144.00 & 37.95 & 8.96  & 28.99 &  26.4 \\
+2009 & 172.99 & 41.19 & 9.05  & 32.14 &  23.8 \\
+2010 & 205.13 & 45.43 & 9.77  & 35.66 &  22.2 \\
+2011 & 240.79 & 47.26 & 11.08 & 36.18 &  19.6 \\
+\end{tabular}
+
+Figures are in pence, except for the year and CROE columns. EPS is the adjusted (aka normalised) earnings per share, i.e. excluding exceptional items, and is taken from published sources. Div is the dividend per share. RE is the Retained earning per share: it is the difference between EPS and Div (e.g. $18.38 - 4.95 = 13.43$). CBV is Clean Book Value. The value for CBV in 2003 was taken from the accounts of NAV per share at the end of 2002. Subsequent CBVs are calculated by adding together the CBV and RE for the previous year (e.g. $55.85+13.43=69.28$). CROE is Clean Return On Equity, calculated by dividing EPS over CBV (e.g. $18.38/55.85 = 29.2\%$).
+
+\section{Selecting Shares}
+
+Farwell's strategy is to select shares that have both {\bf consistent and high clean ROEs}. Farwell calculates a fair value for the share by extrapolating the net income 10 years into the future, applying a terminal earnings multiple (e.g. a 10-year average earnings multiple for the stock), and then discounting the flows using a hurdle rate - typically 15\%, which is the number that Buffett is considered to use.
+
+From page 125 of the book, Farwell tested his theory on a portfolio of 8 Dow stocks having the highest ROEs for the previous year, holding the stocks for a year. No fair value calculations were used int conducting the test. He examined the results for a 16-year time period covering the years 1987 to 2002. The portfolio returned an average of 18.74\% pa, with only one negative year, while the Dow returned 13.50\%, having negative performances in 4 years. The S\&P500 returned 12.35\% pa. Note that the period 2000-2002  saw the Dow and  S\&P decline for 3 consecutive years. The top 8 portfolio declined in only 1 year. The portfolio tends to make more in good years and lose less in bad years.
+
+\end{document}
