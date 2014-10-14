@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\title{Mathematical diversion: the ladder problem}
+\author{Mark Carter}
+\maketitle
+
+\begin{abstract}
+some abstract
+\end{abstract}
+
+\includegraphics[width=6cm]{ladder.eps}
+
+\begin{theorem}
+$b$ and $c$ satisfy the equations
+\begin{equation}
+b^4 + 2 b ^3 + (2-c^2) b^2 + 2 b + 1 = 0
+\end{equation}
+\end{theorem}
+\begin{proof}
+By definition, 
+\begin{equation}
+|P'Q|=b, |RQ| = c
+\end{equation}
+and
+\begin{equation}
+|PP'| = |PR'| = |R'Q'| = |P'Q'| = 1.
+\end{equation}
+
+Also,
+\begin{equation}
+|PQ| = |PP'| + |P'Q| = 1+b
+\end{equation}
+and
+\begin{equation}
+|PR| = |PR'| + |R'R| = 1 + |R'R|.
+\end{equation}
+By similar triangles
+\begin{equation}
+\frac{|R'R|}{R'Q|} = \frac{|P'Q'|}{P'Q|},
+\end{equation}
+which simplifies to
+\begin{equation}
+|R'R| = \frac{1}{b}.
+\end{equation}
+
+By Pythagorus' Theorem
+\begin{equation}
+|PQ|^2 + |PR|^2 = |RQ|^2 .
+\end{equation}
+Substituting in the values defined previously yields the equation
+\begin{equation}
+(1+b)^2 + (1+ \frac{1}{b})^2 = c^2.
+\end{equation}
+Multiply both sides of the equation by $b^2$, giving
+\begin{equation}
+b^2(1+b)^2 + (1+b)^2 = b^2c^2.
+\end{equation}
+Expand, giving
+\begin{equation}
+b^4+2b^3+b^2+b^2+2b+1=b^2c^2.
+\end{equation}
+Rearranging gives the required result.
+
+\end{proof}
+
+
+\end{document}
