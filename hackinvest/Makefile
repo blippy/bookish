@@ -1,12 +1,22 @@
-#hackinvest.dvi : hackinvest.ltx
-#	latex hackinvest.ltx
+BASE = hackinvest
 
-#hackinvest.pdf : hackinvest.ltx
-#	pdflatex hackinvest.ltx
+.PHONY : all clean install
+
+all : $(BASE).dvi $(BASE).pdf
 
 clean :
-	rm -f hackinvest.aux hackinvest.dvi 
-	rm -f hackinvest.glg hackinvest.glo hackinvest.gls
-	rm -f hackinvest.idx hackinvest.ilg hackinvest.ind hackinvest.ist
-	rm -f hackinvest.log hackinvest.lot hackinvest.toc
+	rm -f *~ *.aux *.eps *.glo *.glg *.gls 
+	rm -f *.idx *.ilg *.ind *.ist *.log *.lot *.toc
+	rm -f *.dvi *.pdf
 
+$(BASE).dvi : $(BASE).ltx 
+	latex $(BASE).ltx
+	makeindex hackinvest.idx
+	makeglossaries hackinvest
+	latex $(BASE).ltx
+
+$(BASE).pdf : $(BASE).dvi
+	dvipdfm $<
+
+install :
+	cp $(BASE).pdf /var/ftp

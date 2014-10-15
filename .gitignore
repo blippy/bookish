@@ -2,5 +2,14 @@
 *.aux
 *.dvi
 *.eps
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
 *.log
+*.lot
 *.pdf
+*.toc

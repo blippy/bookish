@@ -1,6 +1,6 @@
 BASE = clean
 
-.PHONY : all clean
+.PHONY : all clean install
 
 all : $(BASE).dvi $(BASE).pdf
 
@@ -14,3 +14,6 @@ $(BASE).dvi : $(BASE).ltx
 
 $(BASE).pdf : $(BASE).dvi
 	dvipdfm $<
+
+install :
+	cp $(BASE).pdf /var/ftp

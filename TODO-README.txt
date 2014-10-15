@@ -8,3 +8,6 @@ Some LaTex tips:
 * Show working Calculations
 http://www.latex-community.org/forum/viewtopic.php?f=44&t=14496&e=0
 
+Options for creating PDF from latex: dvipdfm and pdflatex
+
+
