@@ -1,0 +1,399 @@
+\chapter{Greenblatt's ``Magic'' book}
+
+\section{Introduction}
+
+This chapter focuses on Joel Greenblatt's book, ``The Little Book That Beats The Market'' \cite{tlbtbtm}, hereinafter referred to as the ``Magic'' book, because it expounds Greenblatt's ``Magic Formula Investing'' strategy.
+ 
+The basis for the book is to buy companies that are ``good and cheap''. ``Good'' is measured by a high ROC (Return on Capital), and ``cheap'' is measured buy a high UEY (Unleveraged Earnings Yield). Greenblatt has stated that the Magic Formula is not suitable for use on utility or financial stocks.
+
+Joel Greenblatt's book, ``The Little Book That Beats The Market'' \cite{tlbtbtm},contains information about his ``Magic Formula''. Unfortunately, some of the nitty-gritty details were omitted, and this guide is an attempt to spellthem out. I provide MY INTERPRETATION of his calculations. I cannot vouch that they are, indeed, the ones he actually uses.
+
+
+\section{Notes on Data Sources}
+
+In this section, I present some things to watch out for from various data sources on the web. The watchword appears to be that nearly all sources have some problems somewhere along the lines, so you may find it safest to look at the accounts yourself.
+
+MSN Moneycentral:
+
+\begin{itemize}
+\item EBIT can be wrong. For example, in BSY for y/e Jun 2011, EBIT was reported as being `Profit Before Tax, having aggregated such items as finance costs. This is wrong.
+\end{itemize}
+
+
+
+\section{Specimen Accounts}
+
+
+
+\begin{table}[hb]
+\centering
+\caption{Profit and Loss Account for BSY (BSkyB) for 12 m/e 30 June 2011}
+\label{pal:}
+\begin{tabular}{lrl}
+\hline
+Description & Amount & Code \\
+\hline
+Revenue & 6597 & REV\\
+Operating Expenses & -5524 \\
+\cline{1-2}
+\multicolumn{1}{|l}{EBITDA} &  \multicolumn{1}{r|}{1405 } & \\
+\multicolumn{1}{|l}{Depreciation and Amortisation} & \multicolumn{1}{r|}{-332} \\
+\cline{1-2}
+Operating profit & 1073 & OPN \\
+Share of joint ventures & 34 & JV\\
+Investment Income & 9 \\
+Finance costs & - 111 \\
+Profit on Investment Disposal & 9 \\ \cline{2-2}
+Profit before Tax & 1014 \\
+Tax & -256 \\ \cline{2-2}
+Profit from continuing Operations & 758 \\ 
+Profit from discontinued operations & 52 \\ \cline {2-2}
+Profit for year & 810 \\
+\end{tabular}
+
+\end{table}
+
+We present extracts for BSY.L (BSkyB) accounts for 12 m/e 30 June 2011:
+\begin{itemize}
+\item Profit and Loss Account, as given in the financial statements 
+  (table \ref{pal:})
+\item Profit and Loss Account, as reported on the Digital Look website (table \ref{dlpal:})
+\item Balance Sheet, as reported on Digital Look (table \ref{dlbs:})
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption{P\&L presented by Digital Look - reconciliation}
+\label{dlpal:}
+\begin{tabular}{lrl}
+\hline
+Description & Amount & Notes \\ \hline
+Revenue & 6597 & Same \\
+Operating Profit & 1073 & Same \\
+Net Interest & -102 & = 9 (Inv Inc) -111  \\
+Profit Before Tax & 1014 & Same \\
+Discontinued Operating Profits After Tax & 52 & Same \\
+Profit for period & 810 & Same
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[htbp]
+\centering
+\caption{Balance Sheet - source: Digital Look}
+\label{dlbs:}
+\begin{tabular}{lr}
+\textbf{Assets}          &  \\                   
+Non-Current Assets & \\                             
+Property, Plant \& Equipment &    896.00    \\
+Intangible Assets           &  1406.00 \\
+Investment Properties       &       n/a    \\
+Investments                 &    366.00    \\
+Other Financial Assets      &    275.00    \\
+Other Non-Current Assets    &     82.00    \\ \cline{2-2}
+            &                  3025.00 \\
+             &                \\
+Current Assets &                \\             
+Inventories     &                375.00    \\
+Trade \& Other Receivables &      592.00    \\
+Cash at Bank \& in Hand     &     921.00    \\
+Current Asset Investments   &       n/a    \\
+Other Current Assets        &    441.00  \\ \cline{2-2}
+                            &  2329.00 \\
+                         & \\      
+Other Assets             &            n/a \\
+\textbf{Total Assets}              &     5354.00 \\ \hline
+                           & \\    
+\textbf{Liabilities}                    &          \\
+Current Liabilities             &           \\      
+Borrowings                 &         8.00  \\
+Other Current Liabilities  &     1904.00 \\ \cline{2-2}
+                           &     1912.00 \\
+                           &    \\
+                           &    \\
+Non-Current Liabilities    &      \\                    
+Borrowings                 &     2325.00  \\
+Provisions                 &         9.00  \\
+Other Non-Current Liabilities &     73.00  \\ \cline{2-2}
+                            &    2407.00  \\
+                            &   \\
+Other Liabilities           &         n/a \\
+\textbf{Total Liabilities}           &    4319.00 \\ \hline
+                           &    \\ 
+\textbf{Net Assets}                 &     1035.00\\
+\end{tabular}
+\end{table}
+
+
+\section{Calculations}
+
+Our goal is to calculate ROC and UEY. In this section, I will show you how this is done.
+
+\subsection{EBIT: Earnings before Interest and Tax}
+
+EBIT is operating earnings before interest and taxes. Greenblatt \cite[p 139]{tlbtbtm} justifies his use of EBIT as follows:
+\begin{quote}
+EBIT (or earnings before interest and taxes) was used in place of reported earnings becasue companies operate with different levels of debt and differing tax rates. Using operating earnings before interest and taxes, or EBIT, allowed us to view and compare the operating earnings of different companies without the distortions arising from differences in tax rates and debt levels.
+\end{quote}
+
+Greenblatt does not specify what to include and exclude from the calculation of EBIT, so I present a list of items to specifically include and exclude.
+
+Include:
+\begin{itemize}
+\item Income from joint ventures
+\end{itemize}
+
+Exclude:
+\begin{itemize}
+\item Extraordinary items
+\item Investment Income
+\end{itemize}
+
+In our example from table \ref{pal:}, we obtain an EBIT of 1107 (1073 OPN + 34 JV)
+
+\subsection{TACE: Tangible Capital Employed}
+
+Greenblatt \cite{tlbtbtm} defines TACE (Tangible Capital Employed) as
+Net Working Capital + Net Fixed Assets. He states that excess cash not
+needed to conduct the business was excluded from the calculation of
+Net Working Capital. He was not specific about how to calculate
+``excess cash''. A search that I conducted over the internet suggests
+that the cash required to run a business may vary from 3\% to 10\% of
+revenue, depending on the type of industry for the company. For simplicity sake, I have therefore stripped out all cash, and added back an assumed cash requirement of 5\% of revenue. This seems the most logical approach. If you do that for BSY, you obtain a TACE of 1445 (see table \ref{tace:} for a breakdown of the values).
+
+
+\begin{table}[hpb]
+\centering
+\caption{TACE calculation for BSY}
+\label{tace:}
+\begin{tabular}{lrl}
+Tangible non-current assets &   1619.00 & (= 896 + 366 + 275 +82) \\
+Current Assets              &  2329.00 \\
+Strip out Cash              &   -921.00 \\
+Working cash                &    330.00 & 5\% * 6597 REV \\
+Current Liabilities         & -1912.00 \\ \cline{2-2}
+TACE                        &   1445.00 \\
+\end{tabular}
+\end{table}
+
+
+Using the calculations from MFI Diary \cite{mficalc}, the following line items that you might see on Digital Look would seem to be included or excluded:
+
+\begin{tabular}{ll}
+\textbf{Line item}  & \textbf{Include?}  \\ \hline
+\textbf{Components of Net Fixed Assets} & \\
+\emph{Non-current assets:} & \\
+Property, plant, equip       & inc \\
+Intangible assets            & exc \\
+Investment properties        & unk \\
+Investments                  & unk \\
+Other financial assets       & unk \\
+Other non-financial assets   & unk \\
+\\
+\textbf{Components of Net Working Capital} & \\
+\emph{Current assets:}  & \\
+Inventories                  & inc \\
+Trade and other receivables  & exc \\
+Cash and bank and in hand    & exc - use 5\% of revenues instead \\
+Current asset investments    & unk \\
+Other current assets         & inc \\
+\emph{Current Liabilities:}  & \\
+Borrowings                   & exc \\
+Other Current Liabilities    & inc \\
+\end{tabular}
+
+Notes:
+\begin{enumerate}
+\item 'inc' means include in the calculation, 'exc' means exclude, and 'unk' means that it is unknown what the correct treatment should be
+\item All non-current liabilites are excluded.
+\item Stockopedia \cite{stockcalc} says that  working cash should be considered as part of the capital employed. A ratio of 3\% - 10\% is normal. A blended average of 5\% might therefore be a suitable figure.
+\item If Net Working Capital is negative, just use the value 0. 
+\end{enumerate}
+
+
+
+
+\subsection{NCASH: Net Cash}
+
+The Digital Look website seems like a fairly reliable source for a company's balance sheet. \gls{NCASH} is ``net interest-bearing debt'', and is used to calculate EV (Enterprise Value). In our BSY example, the figure to use is -1412 (calculation is done in table below.
+
+\begin{comment}
+\begin{table}[hpb]
+\centering
+\caption{NCASH calculation for BSY}
+\end{comment}
+\label{ncash:}
+
+\begin{tabular}{lr}
+Cash at bank/in hand &           921.00 \\
+Current borrowings    &           -8.00 \\
+Non-current borrowings &      -2325.00 \\ \cline{2-2}
+
+NCASH                   &     -1412.00
+\end{tabular}
+\begin{comment}
+\end{table}
+\end{comment}
+
+
+\subsection{EV: Enterprise Value}
+
+EV is the market value of equity including preferred equity + net interest-bearing debt. i.e.
+
+\begin{equation}
+  EV = MKT - NCASH
+\end{equation}
+
+where MKT is the market value of the equity. ``Net interest-bearing debt'' is the negative of NCASH.
+
+On 6 August 2011, MKT was
+\textsterling11762m, based on a share price of 671p and the number of
+shares in issue of 1752.84m. We there obtain EV = 13174 (11762 - -1412)
+
+\subsection{ROC: Return On Capital}
+
+ROC is calculated as follows:
+
+\begin{equation}
+  ROC = EBIT / TACE
+\end{equation}
+
+In our example, ROC = 76.6\% (1107 / 1445).
+
+\subsection{UEY: Unleveraged Earnings Yield}
+
+UEY is calculated as follows:
+\begin{equation}
+  UEY = EBIT / EV
+\end{equation}
+
+In our example, UEY = 8.4\% (1107 / 13174).
+
+\section{SharelockHolmes calculations}
+
+In this section, we look at how SharelockHolmes performs its calculations of ROC and UEY. We use Morrisons (MRW.L) for year-ended 31 January 2011. Some general information it provides:
+
+\begin{tabular}{lr}
+share price & 284p \\
+market capitalisation & 7365.5m \\
+net debt & -817.0 \\
+interest & -30.0 \\
+profit before tax & 874
+\end{tabular}
+
+Although preferred stock and minorites are not specified by SH (SharelockHolmes), they appear to be 0, according to the Digital Look website.
+
+Here are extracts from the balance sheet, as supplied by SharelockHolmes:
+
+\begin{tabular}{lr}
+Intangible Assets &	184.0 \\
+Tangible Assets &	7,786.0 \\
+Other Non-Current & 	41.0 \\ \cline{2-2}
+Non-Curr Assets &	8,011.0 \\ 
+ & \\
+Inventory &	638.0 \\
+Receivables &	268.0 \\
+Cash &	228.0 \\
+Other Current & 	4.0 \\ \cline{2-2}
+Current Assets &	1,138.0 \\
+Current Liabilities &	-2,086.0 \\ \cline{2-2}
+Net Current Assets &	-948.0 \\
+Non-Curr Liabilities & 	-1,643.0 \\
+    &    \\	
+Retained Earnings &	2,463.0 \\
+Equity Funds &	5,420.0 
+\end{tabular}
+
+SH makes the definitions for Unleveraged Earnings Yield:
+\begin{equation}
+  UEY = EBIT / EV
+\end{equation}
+where they specifically cite UEY as being applicable to the Greenblatt calculation. They define
+\begin{equation}
+  EBIT = (PBT + Interest)
+\end{equation}
+where, of course, PBT is Profit Befor Tax. They define
+\begin{equation}
+  EV = MKT + NDEBT + Preferred + Minorities
+\end{equation}
+where MKT is Total Market Capitalisation, and NDEBT is Net Debt. They then give the calculation for ROC as follows:
+\begin{equation}
+  ROC = EBIT / TACE
+\end{equation}
+where Tangible Capital Employed is defined as:
+\begin{equation}
+  TACE = NWC + TA
+\end{equation}
+where TA denotes Tangible Assets, and NWC is Net Working Capital, defined as:
+\begin{equation}
+  NWC = Inventory + Receivables + WCASH - CL
+\end{equation}
+where WCASH denotes Working Cash, and CL denotes Current Liabilities.
+
+Working with the above data, we obtain:
+\begin{equation}
+  EBIT = 874 + 30 = 904
+\end{equation}
+\begin{equation}
+  EV = 7364.5 + 817 = 8181.5
+\end{equation}
+\begin{equation}
+  TACE = 7786 + 638 + 268 + 228 - 2086 = 6834
+\end{equation}
+which leads to the final results:
+\begin{equation}
+    UEY = 904/8181.5 = 11.05\%
+\end{equation}
+\begin{equation}
+  ROC = 904/6834 = 13.2\%
+\end{equation}
+These computed values for UEY and ROC agree exactly with SharelockHolmes.
+
+\section{Critiques}
+
+MFI is not without its critics and observations. In this section, we explore some of those criticims.
+
+In the thread ``Stock Contest Ends'' on magicformulainvesting Yahoo Group \cite{sce}, Gray and Vogel, ``Analyzing Valuation Measures: A Performance Horse-Race Over the Past 40 Years'' \cite{avm} has the abstract:
+\begin{quote}
+We compare the investment performance of portfolios sorted on different valuation measures. EBITDA/TEV has historically been the best performing metric and outperforms many investor favorites such as price-to-earnings, free-cash-flow to total enterprise value, and book-to-market. We also explore the investment potential of long-term valuation ratios, which replace one-year earnings with an average of long-term earnings. In contrast to prior empirical work, we find that long-term ratios add little investment value over standard one-year valuation metrics. 
+\end{quote}
+
+An author \cite{sce}  observed that (sales) growth is a stronger factor than profitability (ROA or ROE). Price (P/E) was the strongest factors in price, profitability and growth. Combining price and growth outperformed price and profitability.  Combining all three factors produced the best results. Another suggests:
+\begin{quote}
+The sales growth or the earnings growth must give better result, you can 
+also check if earnings growth is greater than sales growth, so you can 
+detect if you sale more but with less profits
+
+You can also add a momentum signal: price greater than a quarter ago.
+
+So with the growth ratio you compare 2 years in the past. You can also 
+check if the average eps expect for this year and next yearare greater 
+than last eps.
+\end{quote}
+
+In another thread on Magic Formula Yahoo Group in 2012, a poster reported:
+\begin{quote}
+I think the "problem" with the magic formula is that
+too many of the stocks in the top 50 have a lot of "hair" on them or are
+on the list when the past 12 months is a poor predictor of future
+returns.
+
+Stocks that have fallen in these categories have included:
+\begin{enumerate}
+\item
+For profit eductation [sic] stocks (like STRA, COCO, CECO, APOL)
+\item
+home health care (AMED, AFAM, )
+\item
+Chinese RTOs (NEP, UTA etc)
+\item
+Solar companies (PWER and GTAT) and
+\item
+Bio-tech Pharmas ()
+\end{enumerate}
+
+I suspect that is why JG has moved away from the individual stocks (even
+25 to 30 gives a tremendous amount of volatility and is now pushing his
+"big secret", which is much broader.
+\end{quote}

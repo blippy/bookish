@@ -1,0 +1,92 @@
+\chapter{Return on Capital}
+
+\section{Introduction}
+
+In this section we explore ways of measuring returns on capital.
+
+\section{ROITA - Return On Invested Tangible Assets}
+
+This section discusses  \gls{ROITA}. In ``Free Cash Flow Isn't Everything'', \index{Gannon}Gannon \cite{gannonroita} said that Warren Buffett\index{Buffett} is interested in a company's return on net tangible assets, although it was unknown exactly how he calculates ``unleveraged return on tangible equity''. He reckons that
+\begin{equation}
+  ROITA=EBIT/NTA
+\end{equation}
+where NTA is Net Tangible Assets calculated as:
+\begin{equation}
+  NTA = (Receviables + Inventory + PPE)  - (AP +AE)
+\end{equation}
+
+where PPE is net Property, Plant and Equipment (i.e. after depraciation), AP is Accounts Payable, and AE is Accrued Expenses.
+
+Exclude: cash and equivalents, prepayments, goodwill, `other' long term assets
+
+Basically, you exclude non-interest bearing current assets/liabilities on the basis that it does not cost the shareholders anything. Gannon used an average of current and previous year's balance sheet figures in the denominator of the equation.
+
+Based on figures for 2012 for WMT (Walmart), and using figures from the balance sheet for 2011 in order to create averages for NTA, we use ant EBIT of \$26.56bn and and NTA of \$100.62bn you obtain a ROITA of 26.40\%, which is a pre-tax return. Assuming a tax rate of 35\%, that would leave WMT with a normal return on \index{Unleveraged tangible equity}unleveraged tangible equity of about 17\%.
+
+Gannon says that value investors overfocus on \index{Free cashflow}free cashflow. If a company can earn high ROITA, then it is better that it retain its earnings than distribute them as dividends. He offer the following thought experiment: let's say that an investor can earn a 10\% return on his money, ignoring taxes. He thinks that's a stretch in 2012, though - the number is probably closer to 7\%. Let's take it as 10\%, though. If a dollar in WMT's pocket cannot compound more than 15\% a year, then it's likely to be a poor investment. There is a lack of a margin of safety. You know youself better than WMT, its past is probably better than its future, and net income probably overstates owner earnings.
+
+Generally, if you are investing in a business for its profitable future growth, you want that future growth to be at least 150\% of the annual growth you think you could provide using the same money.
+
+
+
+
+
+
+
+
+
+
+\section{Expected Performance}
+
+This is not a formula used in finance, but a concoction devised by me. So caveat emptor. Assuming that a share is fairly valued, then we might expect the total return over a year, t, to be given by
+\begin{equation}
+t = y + e
+\end{equation}
+where y is the current yield on a share, and e is the growth in earnings. Technically we should be using forward yield, which is a multiplicative factor on the earnings growth, but I consider the assumption on additivity to be acceptable. The current yield is a known quantity. We assume that the earnings growth is a function of a capital return, r (for example the ROE of a company), and the dividend cover, c. C is the ratio of earnings to dividends, and is a measure of the amount of earnings retained by the company, and presumably ploughed back into expanding earnings. The earnings growth would be:
+\begin{equation}
+e = r (1 - 1 /c)
+\end{equation}
+Putting this together:
+\begin{equation}
+t = y + r (1 - 1 /c)
+\end{equation}
+So, if a company had a yield of 5\%, a ROE of 20\%, and a dividend cover of 2, then the expected return one year out would be:
+\begin{equation}
+t = 5 + 20 (1 - 1 /c) = 15\%
+\end{equation}
+
+Furthermore, we might also expect the share price to exhibit a reversion to the mean of its PE. Let us call that p. Then the expanded form for total return becomes:
+\begin{equation}
+t = y + e + p
+\end{equation}
+As with yield and earnings expansion, the total return would be multiplicative with p, rather than additive. We keep with the simplifying assumption, which allows us to see the individual components of expected return.
+
+In order to come up with a value for p, we assume that the current PE, $p_0$ returns to a normal PR, $p_n$, exponentially over a period n. Thus
+\begin{equation}
+p = (p_n / p_0 ) ^{1/n} -1
+\end{equation}
+Thus, if a share is on a PE of 13, and a fair value might be 15, which is expected to revert over a period of 2.5 years, then we would calculate:
+\begin{equation}
+p = (15 / 13 ) ^{1/2.5} -1 = 5.9\%
+\end{equation}
+So we might expect an additional 5.9\% uplift in share price performance in the first year of the share price. The value of $p_0$ is known, and  $p_n$ should be chosen sensibly. We might use an average of the PE that the stock has traded for over the last decade, but a more sensible value would be 15 - the long-term average PE of the market. Greenblatt reckons that stocks revert to fair value over a 2-3 year period, so choosing a value of $n=2.5$ seems sensible.
+
+Putting the above together:
+\begin{equation}
+t = y + r (1 - 1 /c) + ((p_n / p_0 ) ^{1/n} -1)
+\end{equation}
+Showing the components separately gives us the opportunity to examine the likely contributions to share price performance. Below, I have tabulated some figures for companies trading in the UK, using $n=2.5$.
+
+\begin{tabular}{|l|r|rrrr|rrr|r|}
+\hline
+EPIC & SP  &  r    & c    & $p_n$ & $p_0$ & y\%   & e\%    & p\% & t\% \\
+\hline
+BWNG & 238 & 19.9 & 2.18  & 9.75  & 8.3   & 5.5   & 10.8   & 6.6 &  22.9  \\
+MCRO & 438 & 55.2 & 1.51  & 12.9  & 10.0  & 6.6   & 18.6   & 10.7 & 35.9 \\
+SN.  & 592 & 20.8 & 4.37  & 15.0  & 12.3  & 1.9   & 16.0   &  8.2 & 26.1 \\
+\hline
+\end{tabular}
+
+The above figures were taken at 23-May-2012. SP is the share price (in pence), and r, c, $p_0$ and y were taken from Sharelock Holmes. The implied returns (MCRO at nearly 36\%, for example), look too high, and are unlikely to be attained in practice. In chosing values for $p_n$, I have used the lower of 15 (the long-term market average PE) and the mean PE that the company has traded for in the past.
+
+\textbf{Subsequent Performance} On 13-Apr-2013, the portfolio was revisited. The one-year performance of the shares listed above were: BWNG +84.0\%, MCRO +30.4\%, SN. +22.1\%. All of these shares performed better than the All-Share index: ASX +13.1\%. The results were excellent.
