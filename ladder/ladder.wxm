@@ -2,23 +2,15 @@
 /* [ Created with wxMaxima version 13.04.2 ] */
 
 /* [wxMaxima: input   start ] */
-expand((b-1)^2);
+y:b^4+2*b^3 + (2-c^2)* b ^2 + 2 * b + 1 =0;
 /* [wxMaxima: input   end   ] */
 
 /* [wxMaxima: input   start ] */
-(b-1)^2;
+z:solve(y, b), c=3;
 /* [wxMaxima: input   end   ] */
 
 /* [wxMaxima: input   start ] */
-expand((1+b^2) * (1+b)^2 - b^2 * c^2);
-/* [wxMaxima: input   end   ] */
-
-/* [wxMaxima: input   start ] */
-float(solve((1+b^2) * (1+b)^2 - b^2 * 6^2, b));
-/* [wxMaxima: input   end   ] */
-
-/* [wxMaxima: input   start ] */
-float(solve(b^2 + (1 - sqrt(37)) * b +1 , b));
+float(z);
 /* [wxMaxima: input   end   ] */
 
 /* Maxima can't load/batch files which end with a comment! */

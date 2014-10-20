@@ -10,14 +10,19 @@
 \maketitle
 
 \begin{abstract}
-some abstract
+This is a mathematical diversion to while away some time, and stimulate your brain. Try solving it before looking at the paper, as it states some basic equations and approaches quickly. The problem is stated below.
+
+There is a vertical wall, and a horizontal floor. A box, measuring 1m x 1m x 1m lies on the floor, and is flush against the wall and the floor. The problem is actually in 2D, so you can ignore depth. Suppose there is a ladder, of length $c$, which is propped so that the top of the ladder touches the wall, the bottom touches the floor, and somewhere along its length it touches the corner of the box. The question is: determine $b$, the horizontal distance from the bottom of the box to the point at which the ladder meets the floor. You may assume $c=3$ if that helps. There are no tricks in the statement of this problem.
 \end{abstract}
+
+\section{Introduction}
 
 \includegraphics[width=6cm]{ladder.eps}
 
 \begin{theorem}
 $b$ and $c$ satisfy the equations
 \begin{equation}
+\label{eq:solve}
 b^4 + 2 b ^3 + (2-c^2) b^2 + 2 b + 1 = 0
 \end{equation}
 \end{theorem}
@@ -41,10 +46,11 @@ and
 \end{equation}
 By similar triangles
 \begin{equation}
-\frac{|R'R|}{R'Q|} = \frac{|P'Q'|}{P'Q|},
+\frac{|R'R|}{|R'Q|} = \frac{|P'Q'|}{P'Q|},
 \end{equation}
 which simplifies to
 \begin{equation}
+\label{eq:rpr}
 |R'R| = \frac{1}{b}.
 \end{equation}
 
@@ -67,6 +73,67 @@ b^4+2b^3+b^2+b^2+2b+1=b^2c^2.
 Rearranging gives the required result.
 
 \end{proof}
+
+
+\section{Numerical solution}
+
+The most straightforward way of solving the problem is to use iteration. We re-arrange \eqref{eq:solve} with $c=3$ to the form the iterative equation:
+\begin{equation}
+\label{eq:iter}
+b_{n+1} = \sqrt[4]{ - (2b_n ^3 -7 b_n ^2 + 2 b_n + 1)}.
+\end{equation}
+We take an initial guess at the solution, say $b_0 = 1$, and keep iterating \eqref{eq:iter} until convergence. We obtain the solution $b=1.49207$ to 4 dp. We expect there to be a different solution, but it turns our that $1.49207$ is the stable one, and that \eqref{eq:iter} does not  yield the other solution readily. However, we note that, due to the symmetry of the problem, another solution is 
+$|R'R| = 1/b$ (equation \eqref{eq:rpr}), i.e. $0.6702$.
+
+
+
+\section{Solution using intuition: quadratic factorisation}
+
+My favourite way of solving the problem is to use intuition and guesswork. The problem seems to have a lot of \emph{symmetry} about it, as if there were a \emph{quadratic} trying to escape into the solution. Equation \eqref{eq:solve} also has a lot of symmetry to it, too.
+
+Let us, therefore, \emph{assume} that it can be factored into two quadratics, and see where that leads us. Specifically, let us assume that there is a solution of the form
+\begin{equation}
+(b^2 + a_1b+1)(b^2+a_2b+1)=0
+\end{equation}
+for some $a_1$ and $a_2$ to be determined.
+
+Expanding yields:
+\begin{equation}
+b^4 + (a_1+a_2)b^3 + (a_1 a_2 +2) b^2 + 1 =0.
+\end{equation}
+Equating co-efficients with \eqref{eq:solve} gives us
+\begin{equation}
+\label{eq:b3}
+a_1+a_2 =2
+\end{equation}
+for co-efficients in $b^3$, and
+\begin{equation}
+a_1a_2+2=2-c^2
+\end{equation}
+for co-efficients in $b^2$, which in turn simplifies to
+\begin{equation}
+\label{eq:b2}
+a_1a_2 = -c^2.
+\end{equation}
+Hence
+\begin{equation}
+a_2 = 1 \pm \sqrt{1+c^2}.
+\end{equation}
+Substitute back into \eqref{eq:b3} to obtain
+\begin{equation}
+\label{eq:a1}
+a_1 = a_2 = 1\pm \sqrt{1+c^2}.
+\end{equation}
+
+Thus, it is sufficient to solve the equation
+\begin{equation}
+b^2 + a_1b +1 =0.
+\end{equation}
+This, of course, has solution
+\begin{equation}
+b = \frac{-a_1 \pm \sqrt{a_1 ^2 - 4a_1}}{2 a_1}.
+\end{equation}
+The full expansion is messy, but in the case $c=3$, the solutions are -3.9063, -0.2560, 0.6702, 1.4907 to 4 dp. 
 
 
 \end{document}

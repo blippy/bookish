@@ -14,6 +14,7 @@ ladder.eps : ladder.dia
 
 $(BASE).dvi : $(BASE).ltx ladder.eps
 	latex $(BASE).ltx
+	latex $(BASE).ltx
 
 $(BASE).pdf : $(BASE).dvi
 	dvipdfm $<
