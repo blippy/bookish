@@ -4,6 +4,8 @@
 \usepackage{graphicx}
 \newtheorem{theorem}{Theorem}
 
+\input{margins.ltx}
+
 \begin{document}
 \title{Mathematical diversion: the ladder problem}
 \author{Mark Carter}
@@ -16,6 +18,28 @@ There is a vertical wall, and a horizontal floor. A box, measuring 1m x 1m x 1m 
 \end{abstract}
 
 \section{Introduction}
+
+I was introduced to the Ladder Problem when I first went to A-level
+classes in mathematics in 1983. I attended at the Southend College of
+Technology. It has since changed its name to South East Essex College
+of Arts and Technology. My teacher in pure mathematics set the problem
+for students to try to solve, although it was not part of the
+curriculum. I spent many a bus ride trying to figure out its
+solution. It is a pesky problem, because you would think it could be
+expressed as a quadratic equation. Those are easy to solve. However,
+whenever you try to construct equations for the problem, they end up
+as quartics. Fortunately, there are general solutions to quartics, but
+I did not know how to solve them. Eventually, the best I could do at
+the time was to express the problem as an iterative equation which
+could be solved approximately. It was only in 2014 that I tried to
+solve the problem in earnest. Of course, we have the internet now, and
+my education is more advanced, so I knew what I was looking for, and I
+had hit on the idea of symmetry.
+
+This article looks at two approaches to the problem: one taking the easy route by solving the problem numerically, and the second, taking a more satisfying route of assuming the resultant quartic can be factored as two quadratics, and exploring the assumption. Before we look at solutions, let me illustrate the ladder problem in the figure below. You can make use of the labelling that I have adopted. Below that is a theorem which expresses  the value $b$ in terms of $c$. You should make your own attempt at deriving the equation before looking at it.
+
+I hope you find this mathematical diversion enjoyable. If you find a better approach and solution to the problem, then I would be interested in hearing about it. My contact email address is ``devnull at markcarter dot me dot uk''.
+
 
 \includegraphics[width=6cm]{ladder.eps}
 
@@ -133,7 +157,7 @@ This, of course, has solution
 \begin{equation}
 b = \frac{-a_1 \pm \sqrt{a_1 ^2 - 4a_1}}{2 a_1}.
 \end{equation}
-The full expansion is messy, but in the case $c=3$, the solutions are -3.9063, -0.2560, 0.6702, 1.4907 to 4 dp. 
+The full analytical expansion is messy, but in the case $c=3$, the solutions are -3.9063, -0.2560, 0.6702, 1.4907 to 4 dp. 
 
 
 \end{document}
