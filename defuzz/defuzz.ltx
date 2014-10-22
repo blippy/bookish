@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+
+
+
+
+\begin{document}
+
+\title{Simplification of defuzzification in Fuzzy Logic}
+\author{Mark Carter}
+\maketitle
+
+\begin{abstract}
+In the traditional Fuzzy Logic approach, each consequent is expressed as a fuzzy set. Typically, these sets are combined to form a complex shape whose COG (Centre of Gravity) is computed. This article argues that fuzzy consequents can be replaced by crisp consequents. By partitioning the solution space, a lot of elaborate modelling and computation is removed. An example is shown in which the simplified approach gives an answer which is very similar to a more elaborate process.
+\end{abstract}
+
+\section{A typical problem}
+
+Consider a Fuzzy Logic problem \cite{example} in assessing the risk of a software engineering project. Risk is classified as low, medium, and high by fuzzy sets, which are defined as shown in the figure below.
+
+\includegraphics[width=12cm]{risk.eps}
+
+\cite{example} gives the result of evaluation the rules as follows:
+\begin{equation}
+\mu_{risk=low}(z) = 0.1
+\label{eq:mu_low}
+\end{equation}
+\begin{equation}
+\mu_{risk=normal}(z) = 0.2
+\label{eq:mu_normal}
+\end{equation}
+\begin{equation}
+\mu_{risk=high}(z) = 0.5
+\label{eq:mu_high}
+\end{equation}
+
+Let us take these consequents as given, without worring how they are derived. Applying those results to the consequent fuzzy sets, a green area in the figure is obtained. Typically, the COG for that green area is computed to obtain a crisp value. \cite{example} calculates the answer as
+\begin{equation}
+\label{eq:risk_ori}
+risk = 67.4\%.
+\end{equation}
+
+\section{An alternative approach}
+
+Let us redefine the consequents, not as fuzzy sets, but as partitions of the solution. Taking out guide from the figure above, and using the intersection points of the set, define:
+\begin{equation}
+risk = 
+\left\{
+	\begin{array}{ll}
+		low  & \mbox{if } 0 \leq risk \leq 30 \\
+		medium & \mbox{if } 30 < risk < 70 \\
+                high & \mbox{if } 70 \leq risk \leq 100
+	\end{array}
+\right.
+\end{equation}
+
+COGs are now easy to calculate, because they are defined in terms of rectangles. The low risk has $x=15$, corresponding to its the average of its lower and upper bound (0 and 30), with a value of ``weight'' $y=0.1 \times 30 = 3$ from equation \eqref{eq:mu_low}. Similarly, for medium risk, $x=50$, $y=0.2 \times 40 = 8$. 0.2 is the height of the box, and 40 is the width of the box (70-30). Finally, for high risk, $x=85$, $y=0.5 \times 30 = 15$.
+
+The formula for the centre of mass for two bodies is given by \cite{gsu}:
+\begin{equation}
+x = \frac{m_1 x_1 + m_2 x_2}{m_1 + m_2}
+\label{cog}
+\end{equation}
+and is easily generalised to three or more bodies. Using that equation, we therefore calculate:
+\begin{equation}
+risk = \frac{3 \times 15 + 8 \times 50 + 15 \times 85}{ 3 + 8 + 15} =66.2\%
+\end{equation}
+This compares favourably with the original result of 67.5\% given in \eqref{eq:risk_ori}.
+
+\section{Discussion, implications, and conclusion}
+
+In the preceeding sections, it has ben demonstrated that a crisp partitioning approach can yield similar results to traditional methods. Modelling is simpler, and one can think of changes in consequents as transitions across partitions. Models are easier to change and explore, too, as one simply has to shift the boundaries. Models should be easier to program, too, as they obviate at least some of the need of more elaborate programming toolkits. They are also conceptually simpler.
+
+\begin{thebibliography}{1}
+
+\bibitem{gsu}
+Center of Mass
+[online] Available at:
+$<$http://hyperphysics.phy-astr.gsu.edu/hbase/cm.html$>$
+[Accessed 15-September 2014]
+
+\bibitem{example}
+Fuzzy Logic example.
+[online] Available at:
+$<$http://petro.tanrei.ca/fuzzylogic/fuzzy\_negnevistky.html$>$
+[Accessed 15 September 2014].
+
+\end{thebibliography}
+\end{document}
