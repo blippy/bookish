@@ -1,17 +1,57 @@
 \documentclass{article}
 
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+%\usepackage{hyperref}
+\usepackage{listings}
+
 \input{margins.ltx}
 
-\begin{documet}
+\begin{document}
 \title{Bayes election forecast using the FiveThirtyEight model}
 \author{Mark Carter}
 \maketitle
 
 \begin{abstract}
-This article presents on overview of Allen Downey's blog article of 25 September 2014 on ``Bayesian election forecasting''
+This article presents on overview of Allen Downey's blog article of 25 September 2014 on ``Bayesian election forecasting'' \cite{blog}, and discussed on Reddit \cite{reddit}. The problem is solved as a measurement instrument with errors.
 \end{abstract}
 
+\section{Problem statement}
 
 
-\include{bibli.ltx}
+%\begin{quote}
+\textbf{Exercise 1} The polling company Strategic Vision reports that among likely voters, 53\% intend to vote for your favorite candidate and 47\% intend to vote for the opponent (let's ignore undecided voters for now).  Suppose that, based on past performance, you estimate that the distribution of error for this company has mean 1.1 percentage point (in favor of your candidate) and standard deviation 3.7 percentage points.  What is the probability that the actual fraction of likely voters who favor your candidate is less than 50\%?
+
+
+\textbf{Exercise 2} What if another poll comes out from Research 2000 showing that 49\% of likely voters intend to vote for your candidate, but past poll show that this company's results tend to favor the opponent by 2.3 points, and their past errors (after correcting for this bias) have standard deviation 4.1 points.  Now what should you believe?
+%\end{quote}
+
+\section{Solution}
+The problem should be approached as a measurement with known error characteristics. So
+\begin{equation}
+M = A + \epsilon
+\end{equation}
+where $M$ is the \textbf{measured} value, $A$ is the \textbf{actual} value, and $\epsilon$ is the distribution of the  \textbf{error}. 
+
+We tackle each exercise in turn, using the output from the first exercise to feed into the input for the second exercie. Consider exercise 1 first.
+
+In this particular problem, we wnat to solve the inverse problem. Namely, given a measurement $M$ and an error distribution $\epsilon$, we want the posterior distribution for $A$. We need to start off with a prior distrubtion. Let us \emph{assume} that the prior of $A$ is uniform on the range [0, 100]. Using $\epsilon$ allows you to create the posterior distribution of $A$. The PDF for $A$ is set in the variable \texttt{post1}.
+
+Exercise 2 is now actually straightforward if we have understood the first exercise. We feed the PDF \texttt{post1} into the function \texttt{update()} using the parameters from the second exercise, to obtain the revised posterior PDF, \texttt{post2}.
+
+\section{Program listing}
+\lstinputlisting[language=Python,backgroundcolor=\color{light-gray}]{election.py}
+
+\section{Results}
+
+By running the program, we find that, for exercise 1, the probability of losing the election, i.e. the sum of the probabilities of all values less than 50\%, is 0.258.
+
+When we pass that through the results suggested by exercise 2, we revise the probability of losing the election down to 0.218. Note how we are more confident of winning the election as a result of running a second survey, even though the second survey has a worse mean and standard deviation. It is \emph{washing out the priors}.
+
+Downey notes:
+\begin{quote}
+Predicting the probability of winning is more meaningful that [sic] predicting the margin of error.  And that's exactly the kind of thing Bayesian models are good for. ... This analysis is based on the assumption that errors in one poll iare [sic] independent of errors in another.  It seems likely that in practice there is correlation between polls; in that case we could extend this solution to model the errors with a joint distribution that includes the correlation. 
+\end{quote}
+
+\input{bibli.ltx}
 \end{document}
