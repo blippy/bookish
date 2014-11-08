@@ -1,6 +1,9 @@
-.PHONY : all clean
+BASE = defuzz
+PDF = $(BASE).pdf
 
-BUILD = defuzz.dvi defuzz.pdf
+.PHONY : all clean install
+
+BUILD = $(BASE).dvi $(BASE).pdf
 
 all : $(BUILD)
 
@@ -11,8 +14,11 @@ defuzz.dvi : defuzz.ltx risk.eps
 	latex defuzz.ltx
 	latex defuzz.ltx
 
-defuzz.pdf : defuzz.dvi
+$(PDF) : defuzz.dvi
 	dvipdfm defuzz.dvi
 
 clean :
 	rm -f $(BUILD) risk.eps *.aux *.dvi *.log*
+
+install : $(PDF)
+	cp $(PDF) /var/ftp

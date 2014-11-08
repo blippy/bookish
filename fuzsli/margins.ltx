@@ -1,0 +1,13 @@
+%fancy margins
+%http://tex.stackexchange.com/questions/8845/how-to-move-page-number
+\usepackage{fancyhdr}
+\usepackage{lipsum} % only for showing some sample text
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\renewcommand{\footrulewidth}{0.1pt}
+\lfoot{\blhc}
+\rfoot{\thepage}
+\pagestyle{fancy}
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother

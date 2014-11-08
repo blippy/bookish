@@ -1,0 +1,75 @@
+\documentclass{article}
+
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+%\usepackage{hyperref}
+\usepackage{listings}
+
+\def \blhc {fuzsli} %bottom left hand corner
+\input{margins.ltx}
+
+\begin{document}
+\title{Sliding partitions in the antecedants of Fuzzy Logic Systems}
+\author{Mark Carter}
+\maketitle
+
+\begin{abstract}
+In the article \emph{Simplification of defuzzification in Fuzzy Logic} \cite{defuzz}, I demonstrated that partitioning the consequent space greatly simplifies the defuzzification process. In this article, I introduce the notion of \emph{sliding partitions} as a way of simplifying the fuzzification process. I show how the ideas can be combined to produce a simple program which obviates the need for complex fuzzy logic toolkits. I apply the techniques in solving a project risk problem.
+\end{abstract}
+
+\section{Sliding partitions}
+
+Typical FLS's (Fuzzy Logic Systems) are composed of arbitrarily-complex fuzzy sets. Programming toolkits must, of necessity, have some complexity in order to accommodate this flexibility. I argue, though, that this flexibility is of unproven necessity, and that simpler arrangements can produce results that are just as good. The mechanism I propose is to ``carve up'' the range of an antecedant into ``partitions'' which ``slide'' seamlessly into one another ``proportionately''. One may think of the domain as being made of a combination of crisp areas and grey areas. 
+
+Formally, we could say that an antecedant $A$ can be described by a list of ordered crisp pairs as follows:
+\begin{equation}
+A = \langle \underline{c}_0, \underline{c}_1, ... \underline{c}_n  \rangle
+\end{equation}
+where $\underline{c}_i = (a_i, b_i)$ and $a_i \leq b_i$ for all $i \in \{0, 1, ... n\}$,  $b_i < a_{i+1}$ for all 
+$i \in \{0, 1, ... n-1\}$, and $[a_0, b_n]$ covers the complete domain of $A$. The degree of membership $\mu$ of a point $x \in [a_0, b_n]$ in $\underline{c}_i$ is 1 if $a_i \leq x \leq b_i$, 
+and $1- \frac{x-b_i}{a_{i+1}-b_i}$ if $b_i < x < a_{i+1}$, 
+and $\frac{x-b_{i-1}}{a_i - b_{i-1}}$ if $b_{i-1} < x < a_i$, and 0 otherwise. In simpler terms, a point $x$ is either completely within a crisp region, or is some  combination of two surrounding crisp regions determined by a linear interpolation of its relative distance from two adjacent regions.
+
+\section{An example problem}
+
+An example will illustrate sliding partitions. 
+
+Suppose we wish to determine the risk of a project, which is dependent on funding level and staffing level. The funding may either be inadequate, marginal, or adequate. Let us suppose that the crisp range for ``inadequate'' is $[0, 20]$, for ``marginal'' it is $[50, 50]$, and for ``adequate'' it is $[80, 100]$. If the funding level is 15, for example, then it is wholly inadequate, because $15 \in [0, 20]$; i.e. the degree of membership of ``inadequate'' is 1, and the degree of membership of ``marginal'' and ``adequate'' is both 0. If $x=30$, then the degree of membership of ``inadequate'' is $0.67 (= \frac{50-30}{50-20})$, for ``marginal'' it is $0.33 (= \frac{30-20}{50-20})$, and for 
+``adequate'' it is 0. The definition of these \emph{sliding partitions} is captured by the variable \texttt{funding} shown in the program listing in appendix A.
+
+
+In a similar manner, let us define the level of ``staffing'' as small, medium, or large, where ``small'' is crisp in the range $[0, 30]$, ``medium'' is crisp in the range $[50, 50]$ (actually just a single point), and ``large'' is crisp in the range $[70, 100]$. See the variable \texttt{staffing} in appendix A for this definition in code form.
+
+Note that although ``marginal'' and ``medium'' are defined as being crisp only at single points, this is simply the way the problem has been modelled. They could have equally well been defined as wider regions. \emph{Sliding partitions} are no more than trapezoidal membership functions that collectively dovetail together. They should therefore be considered as being simpler than typical FLS. Also note that the sum of degree of memberships of a point always adds to 1 by definition, so a degree of membership could be thought of as a measure of probability of membership. In the program listing, function \texttt{inter()} calculates the degree of membership for each set in an antecedant.
+
+Let me continue the example through to completion. Having defined the antecedants, now define the rules as follows:
+\begin{verbatim}
+If funding=adequate or  staffing=small  then risk is low
+If funding=marginal and staffing=large  then risk is normal
+If funding=inadequate                   then risk is high
+\end{verbatim}
+
+The example I am giving is a reworking of the \emph{Fuzzy Logic example} \cite{example}. There is one crucial difference in the antecedants, though: in \cite{example} the staffing had only two fuzzy sets, ``small'' and ``large''. In this article, I have added another value: ``medium''. This was needed in order to improve the closeness of the fit to the original model. Whilst it could be argued that this is ``cheating'', it could also be counter-argued that it is merely a remodelling.
+
+The rules are the same as used in \cite{example}.  Function \texttt{rule()} implements the rules above.
+
+For the consequent, I have adopted the (non-sliding) partitioning method in \cite{defuzz}, rather than use the more complicated COG (Centre of Gravity) method in \cite{example}. The former method had already been established as giving good results. In the program listing, the variable \texttt{risk} codifies the consequent. It is a dictionary which maps each risk linguistic value to a pair $(x, w)$. $x$ marks the \emph{midpoint} of a partition, whilst $w$ gives the \emph{weight} of the partition. Actually, if the endpoints of the partition are specified, then it is possible to calculate the midpoint and weight of the partition. It is easier to program the method I have adopted, though.
+
+\section{Bringing it all together}
+
+The program sets up two dictionaries for the antecedants: \texttt{funding} and \texttt{staffing}. The function \texttt{inter()} takes an antecedant expressed as sliding partitions, and converts a value to degrees of membership. So, in the program, \texttt{mu\_f} is the funding level of 35, which results in an ``adequate'' level of 0, and ``inadequate'' level of 0.5, and a ``marginal'' level of 0.5. Similarly, \texttt{mu\_s} shows that the funding level of 60 gives ``large'' at 0.5, ``medium'' at 0.5, and ``small'' at 0. \texttt{mu\_f} and \texttt{mu\_s} are actually dictionary of membership levels by linguistic values.
+
+These dictionaries of values are passed into the \texttt{rule()} evaluator, which returns yet another dictionary: that of membership value by the risk linguistic variable. It turns out that ``low'' has the value 0, ``normal'' has the value 0.5, and ``high'' has the value of 0.5. 
+
+In the final part of the process, the function \texttt{crisp()} takes the \texttt{risk} configuration data and applies the values of the \texttt{rulings} to obtain a final crisp value for risk. The number obtain is 0.650. The value given in the originating example \cite{example} is 0.675, whilst the 
+value calculated using a non-sliding partitioning scheme \cite{defuzz} is 0.662.
+
+
+So the values are in close agreement. More work is required to determine how comparable the results are over the full domain of possible input values, and the results so far encourage me to investigate further.
+
+\appendix
+\section{Program listing}
+\lstinputlisting[language=Python,backgroundcolor=\color{light-gray}]{fuzsli.py}
+
+\input{bibli.ltx}
+\end{document}
