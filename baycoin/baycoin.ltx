@@ -1,0 +1,61 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx} % usage e.g. \includegraphics[width=12cm]{results.eps}
+
+
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+%\usepackage{hyperref}
+\usepackage{listings}
+
+\def \blhc {baycoin} %bottom left hand corner
+\input{margins.ltx}
+
+
+
+
+\begin{document}
+\title{Bayesian simulation of a biased coin}
+%\author{Mark Carter \texttt{devnull@markcarter.me.uk}}
+\author{Mark Carter}
+\maketitle
+
+\begin{abstract}
+This article provides an introduction to the Bayesian updating process using the example of a biased coin. It shows how the distribution narrows, and likelihood increases as more data is gathered. It is intended to sharpen your understanding of how to interpret the PDF (\emph{probability density function}). A Python 3 example is given, which should help readers gain intuitions into the mechanics of the process.
+\end{abstract}
+
+%\section{section 1}
+A coin toss example is discussed in \cite{updating}, making reference to beta functions, but it does not suggest suitable parameters for $\alpha$ and $\beta$. It also suggests the use of MCMC (Markov Chain Monte Carlo). We will not adopt this approach here. 
+
+Bayes' rule is as follows \cite{rule}:
+\begin{equation}
+\label{eq:full}
+P(H|E) = \frac{P(E|H) \cdot P(H)}{ P(E)},
+\end{equation}
+where $H$ is a hypothesis whose probability may be affected by evidence $E$. $P(H)$ is the \emph{prior probability}. $P(E|H)$ is the probability to observing $E$ given $H$, with $H$ fixed. It is called the \emph{likelihood}. $P(E)$ is called the \emph{marginal likelihood} or \emph{model evidence}. Note that since $P(E)$ is independent of $H$, it is effect just a scaling factor. Equation \eqref{eq:full} can therefore be written in the form
+\begin{equation}
+\label{eq:prop}
+P(H|E) \propto P(E|H) \cdot P(H).
+\end{equation}
+This representation turns out to be more convenient, because, instead of calculating $P(E)$ explicitly, we take the individual posterior likelihoods and scale them by the sum of the posterior likelihoods to obtain the probability distribution proper. In the program listing in appendix A, this scaling process, or \emph{normalising}, is achieved in a straightforward way by function \texttt{norm()}.
+
+In Bayesian inference we start with a prior probability function. We make \emph{assumptions} about the probability density function. In the program, this is achieved in function \texttt{prior()}. We assign a base case of one unit thoughout the range $[0,1]$. It is set to two in $[0.3, 0.7]$, and to three in $[0.4, 0.6]$. So we are assuming that the coin is three times more likely to have a probability of coming up heads at 0.5 than it is at the periphery. Those weighting are then normalised so that a well-formed PDF (\emph{probability density function}) is created. Examine the figure below. The case $n=0$ shows the initial PDF. It has a fat distribution with a maximum likelihood of approximately 0.019.
+
+\includegraphics[width=12cm]{results.eps}
+
+Note the way that the PDF is initialised in the program. The keys of the pdf should be interpretted as meaning the ``the probability that the coin will land heads is ...''. There is an assumption that the coin will take on integer probability values, rather than being a continuous variable. It is possible to make this more or less fine-grained.
+
+The program then calls \texttt{update(pdf, False)}. This updates the PDF under the observation that a tail was observed, rather than a head. Take a look at the function \texttt{update()} itself. The for-loop calculates a posterior likelihood. By way of example, let us examine the case $p=0.01$. If we assume that the probability of landing on heads is 0.01, then what is the likelihood that the coin lands on heads 1\% of the time given that we have just observed a tail, i.e. $P(H|E)$? Well, the probability that it lands on a tail is $1-p = 0.99$, which is $P(E|H)$. This must be multiplied by our prior probability, which is $P(H)$. If you look at the figure for the line $n=1$, you will see that the updated PDF becomes more skewed to the left. So, in view of the fact that we just saw a tail, we now shift our estimates away from the coin landing heads.
+
+A single coin-toss is not conclusive, of course. Let us make more coin-tosses randomly. You can see this in the line code that begins \texttt{for i in range(9)}. We pass in the function \texttt{is\_head()}, which does the tossing for up. You will notice in the function definition, though, that the coin is rigged to be biased. It will land on heads with a probability of 0.6, rather than 0.5. Look at the figure to see the new PDF (line $n=10$). Notice how the distribution is tightening, shifting over to the right, and the maximum likelihood is increasing.
+
+A sample size of 10 is still quite small, so let us finally do another 90 updates to bring the total number of tosses to 100. See the figure above for the case $n=100$. You will notice that the PDF is even more narrowly focussed, and the maximum likelihood has increased, and is very close to 0.6. This trend would continue if we performed more updates.
+
+
+\appendix
+\section{Program listing}
+\lstinputlisting[language=Python,backgroundcolor=\color{light-gray}]{coin.py}
+
+\input{bibli.ltx}
+\end{document}
