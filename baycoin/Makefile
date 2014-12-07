@@ -4,6 +4,7 @@ DVI = $(BASE).dvi
 LTX = $(BASE).ltx
 PDF = $(BASE).pdf
 
+
 .PHONY : all clean install
 
 all : $(DVI) $(PDF)
@@ -22,5 +23,5 @@ $(PDF) : $(DVI)
 	dvipdfm $<
 
 install : $(DVI)
-	cp $(PDF) /var/ftp
+	cp $(PDF) $(WWW_PDF_DIR)
 

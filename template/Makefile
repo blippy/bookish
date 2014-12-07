@@ -19,5 +19,4 @@ $(PDF) : $(DVI)
 	dvipdfm $<
 
 install : $(DVI)
-	cp $(PDF) /var/ftp
-
+	cp $(PDF)  $(WWW_PDF_DIR)

@@ -1,19 +1,23 @@
 BASE = clean
 
+DVI = $(BASE).dvi
+LTX = $(BASE).ltx
+PDF = $(BASE).pdf
+
 .PHONY : all clean install
 
-all : $(BASE).dvi $(BASE).pdf
+.PHONY : all clean install
 
 clean :
 	rm -f *~ *.aux *.dvi *.eps *.log
 
 
 
-$(BASE).dvi : $(BASE).ltx
-	latex $(BASE).ltx
+$(DVI) : $(LTX)
+	latex $(LTX)
 
-$(BASE).pdf : $(BASE).dvi
+$(PDF) : $(DVI)
 	dvipdfm $<
 
 install :
-	cp $(BASE).pdf /var/ftp
+	cp $(PDF)  $(WWW_PDF_DIR)

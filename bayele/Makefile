@@ -1,18 +1,23 @@
 BASE = bayele
 
+DVI = $(BASE).dvi
+LTX = $(BASE).ltx
+PDF = $(BASE).pdf
+
+
 .PHONY : all clean install
 
-all : $(BASE).dvi $(BASE).pdf
+all : $(DVI) $(PDF)
 
 clean :
 	rm -f *~ *.aux *.dvi *.eps *.log
 
-$(BASE).dvi : $(BASE).ltx bibli.ltx election.py margins.ltx 
-	latex $(BASE).ltx
-	latex $(BASE).ltx
+$(DVI) : $(LTX) bibli.ltx election.py margins.ltx 
+	latex $(LTX)
+	latex $(LTX)
 
-$(BASE).pdf : $(BASE).dvi
+$(PDF) : $(DVI)
 	dvipdfm $<
 
 install :
-	cp $(BASE).pdf /var/ftp
+	cp $(PDF) $(WWW_PDF_DIR)

@@ -1,9 +1,12 @@
 BASE = defuzz
+
+DVI = $(BASE).dvi
+LTX = $(BASE).ltx
 PDF = $(BASE).pdf
 
 .PHONY : all clean install
 
-BUILD = $(BASE).dvi $(BASE).pdf
+BUILD = $(DVI) $(PDF)
 
 all : $(BUILD)
 
@@ -21,4 +24,4 @@ clean :
 	rm -f $(BUILD) risk.eps *.aux *.dvi *.log*
 
 install : $(PDF)
-	cp $(PDF) /var/ftp
+	cp $(PDF) $(WWW_PDF_DIR)

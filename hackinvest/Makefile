@@ -1,22 +1,28 @@
 BASE = hackinvest
 
+DVI = $(BASE).dvi
+LTX = $(BASE).ltx
+PDF = $(BASE).pdf
+
 .PHONY : all clean install
 
-all : $(BASE).dvi $(BASE).pdf
+all : $(DVI) $(PDF)
+
+
 
 clean :
 	rm -f *~ *.aux *.eps *.glo *.glg *.gls 
 	rm -f *.idx *.ilg *.ind *.ist *.log *.lot *.toc
 	rm -f *.dvi *.pdf
 
-$(BASE).dvi : $(BASE).ltx 
-	latex $(BASE).ltx
+$(DVI) : $(LTX)
+	latex $(LTX)
 	makeindex hackinvest.idx
 	makeglossaries hackinvest
-	latex $(BASE).ltx
+	latex $(LTX)
 
-$(BASE).pdf : $(BASE).dvi
+$(PDF) : $(DVI)
 	dvipdfm $<
 
 install :
-	cp $(BASE).pdf /var/ftp
+	cp $(PDF) $(WWW_PDF_DIR)
