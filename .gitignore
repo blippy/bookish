@@ -8,6 +8,7 @@
 *.idx
 *.ilg
 *.ind
+.ipynb_checkpoints
 *.ist
 *.log
 *.lot

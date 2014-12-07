@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx} % usage e.g. \includegraphics[width=12cm]{results.eps}
+
+\usepackage{color}
+\definecolor{light-gray}{gray}{0.95}
+%\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{textcomp} % for the tilde
+
+\def \blhc {baybeta} %bottom left hand corner
+\input{margins.ltx}
+
+\begin{document}
+\title{Bayesian Beta}
+\author{Mark Carter}
+\maketitle
+
+\begin{abstract}
+This article provides an overview of the Bayesian Beta distribution.
+\end{abstract}
+
+\section{Introduction}
+
+Given $X\sim{}\mbox{Beta}(\alpha, \beta)$, the following is true:
+\begin{equation}
+E[X] = \alpha / ( \alpha + \beta),
+\end{equation}
+\begin{equation}
+\mbox{var}[X] = \frac{\alpha \beta}{ (\alpha + \beta)^2 (\alpha + \beta +1)}.
+\end{equation}
+
+\section{Plots of the beta distrubtion}
+
+\includegraphics[width=12cm]{beta0505.eps}
+
+
+\includegraphics[width=12cm]{beta11.eps}
+
+
+\includegraphics[width=12cm]{beta22.eps}
+
+\includegraphics[width=12cm]{beta1010.eps}
+
+
+
+\input{bibli.ltx}
+\end{document}
