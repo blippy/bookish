@@ -9,7 +9,7 @@ PDF = $(BASE).pdf
 all : $(DVI) $(PDF)
 
 clean :
-	rm -f *~ *.aux *.dvi *.eps *.log
+	rm -f *~ *.aux *.dvi  *.log *.zip
 
 $(DVI) : $(LTX) bibli.ltx margins.ltx
 	latex $(LTX)
