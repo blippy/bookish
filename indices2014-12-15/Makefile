@@ -1,17 +1,19 @@
 BASE = indices2014-12-15
 
 #DVI = $(BASE).dvi
-HTML = $BASE).html
-NB   = $BASE).ipynb
+H5   = $(BASE).h5
+HTML = $(BASE).html
+NB   = $(BASE).ipynb
 #LTX = $(BASE).ltx
 #PDF = $(BASE).pdf
+ZIP  = $(BASE).zip
 
 .PHONY : all clean install
 
-all : $(DVI) $(PDF)
+all : $(HTML)
 
 clean :
-	rm -f *~ *.aux *.dvi  *.log *.zip
+	rm -f *~ *.aux *.dvi  *.log *.zip $(HTML)
 
 #$(DVI) : $(LTX) bibli.ltx margins.ltx
 #	latex $(LTX)
@@ -23,5 +25,12 @@ clean :
 $(HTML) : $(NB)
 	ipython3 nbconvert --to html $(NB)
 
-install : $(DVI)
-	cp $(PDF)  $(WWW_PDF_DIR)
+zip : $(ZIP)
+
+$(ZIP) : $(NB) $(H5)
+	rm -f $(ZIP)
+	cp $^ $(BASE)
+	zip  $(ZIP) $(BASE)/*
+
+install : $(HTML) $(ZIP)
+	cp $(HTML) $(ZIP) $(WWW_PDF_DIR)
