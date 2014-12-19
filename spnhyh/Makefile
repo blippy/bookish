@@ -15,8 +15,11 @@ $(DVI) : $(LTX) bibli.ltx margins.ltx
 	latex $(LTX)
 	latex $(LTX)
 
-$(PDF) : $(DVI)
+$(PDF) : $(DVI) hyh-01.eps
 	dvipdfm $<
+
+hyh-01.eps: hyh-01.png
+	convert $< $@
 
 install : $(DVI)
 	cp $(PDF)  $(WWW_PDF_DIR)

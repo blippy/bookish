@@ -13,6 +13,13 @@
 
 % added in this document
 \usepackage{hhline}
+\usepackage{float}
+
+%paragraph spacing and indenting
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
 
 \begin{document}
 \title{Spinoff: Halyard Health case study}
@@ -70,7 +77,7 @@ Equity & & 2079.1  \\\hhline{~~=}
 
 Comparison with companies is given in table \ref{tbl:compare}, which shows that that HYH is the cheapest, assuming a share price of \$37.97.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \caption{Comparison of HYH with other companies. Assumes a share price of \$37.97}
 \label{tbl:compare}
@@ -90,7 +97,7 @@ HYH & 1755.91 & 1677.50 & 225.3 & 1.047 & 7.79 \\
 \end{table}
 
 
-01-Nov-2014: There is an announcement that KMB is being sued for \$500m over gown Ebola protection claims. The gowns are made by Kimbewrley Clark Health Care, a division that is being spun off
+01-Nov-2014: There is an announcement that KMB is being sued for \$500m over gown Ebola protection claims. The gowns are made by Kimberley Clark Health Care, a division that is being spun off
 
 
 \section{Initial trading}
@@ -104,6 +111,11 @@ HYH & 1755.91 & 1677.50 & 225.3 & 1.047 & 7.79 \\
 15-Nov-2014 \emph{Seeking Alpha}: ``At a price of \$38, the company is valued at \$1.77b, based on 46.5m shares outstanding. HYH's P/E=14.09, a modest discount to peer C.R. Bard (BCT). No immediate plans for dividends''
 
 18-Nov-2014: I bought some shares at \$38.34. 
+
+A plot of the share price and volume for the pre-market, and subsequent initial trading, is shown below.
+\begin{figure}[H]
+\includegraphics[width=12cm]{hyh-01.eps}
+\end{figure}
 
 \input{bibli.ltx}
 \end{document}
